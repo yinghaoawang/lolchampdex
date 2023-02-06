@@ -1,6 +1,7 @@
-import logo from './logo.svg';
+import CardList from './components/card-list/card-list.component';
 import './App.css';
 import React from 'react';
+import SearchBox from './components/search-box/search-box.component';
 
 class App extends React.Component {
   constructor() {
@@ -16,7 +17,6 @@ class App extends React.Component {
       .then(res => res.json())
       .then(data => {
         let championData = data.data;
-        console.log(championData);
         this.setState(() => {
           return {champions: championData};
         });
@@ -32,13 +32,11 @@ class App extends React.Component {
     const { onSearchChange } = this;
     const { champions, searchKey } = this.state;
     const filteredChampionKeys = Object.keys(champions).filter((key) => key.toLowerCase().includes(searchKey.toLowerCase()));
+    const filteredChampions = filteredChampionKeys.map((key) => champions[key]);
     return (
       <div className="App">
-        <input placeholder='search champions' onChange={onSearchChange} />
-        {filteredChampionKeys.map((key) => {
-          const champion = champions[key];
-          return <li key={champion.id}>{champion.name}</li>;
-        })}
+        <SearchBox onChangeHandler={onSearchChange} placeholder='search champions' className='search-box' />
+        <CardList champions={filteredChampions} />
       </div>
     );
   }
