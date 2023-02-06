@@ -1,0 +1,7 @@
+.card-list-container {
+    @apply flex flex-row flex-wrap justify-center w-[500px];
+  }
+
+  .card-container > img {
+    @apply w-16 h-16;
+  }

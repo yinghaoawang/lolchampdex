@@ -1,0 +1,4 @@
+.search-box {
+    @apply border-none outline-none p-3 w-40 leading-8 mb-8;
+  }
+  
