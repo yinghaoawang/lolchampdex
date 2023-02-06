@@ -1,5 +1,5 @@
 .card-list-container {
-    @apply flex flex-row flex-wrap justify-center w-[500px];
+    @apply flex flex-row flex-wrap justify-center;
   }
 
   .card-container > img {
