@@ -1,25 +1,47 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      champions: [],
+      searchKey: ''
+    };
+  }
+  
+  componentDidMount() {
+    fetch('http://ddragon.leagueoflegends.com/cdn/13.1.1/data/en_US/champion.json')
+      .then(res => res.json())
+      .then(data => {
+        let championData = data.data;
+        console.log(championData);
+        this.setState(() => {
+          return {champions: championData};
+        });
+      });
+  }
+
+  onSearchChange = (event) => {
+    const searchKey = event.target.value;
+    this.setState(() => {return {searchKey}});
+  }
+
+  render() {
+    const { onSearchChange } = this;
+    const { champions, searchKey } = this.state;
+    const filteredChampionKeys = Object.keys(champions).filter((key) => key.toLowerCase().includes(searchKey.toLowerCase()));
+    return (
+      <div className="App">
+        <input placeholder='search champions' onChange={onSearchChange} />
+        {filteredChampionKeys.map((key) => {
+          const champion = champions[key];
+          return <li key={champion.id}>{champion.name}</li>;
+        })}
+      </div>
+    );
+  }
 }
 
 export default App;
