@@ -1,3 +1,11 @@
 .champion-details {
     @apply p-4;
 }
+
+.champion-details > img {
+    @apply cursor-pointer;
+}
+
+.champion-details > img:hover {
+    @apply opacity-90;
+}

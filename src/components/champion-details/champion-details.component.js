@@ -4,7 +4,7 @@ import './champion-details.styles.css';
 class ChampionDetails extends Component {
     constructor() {
         super();
-        this.state = {champion: null};
+        this.state = {champion: null, skinIndex: 0};
     }
     componentDidUpdate(prevProps) {
         const { champion } = this.props;
@@ -19,20 +19,38 @@ class ChampionDetails extends Component {
             let championData = data.data[championId];
             console.log(championData);
             this.setState(() => {
-                return {champion: championData};
+                return {skinIndex: 0, champion: championData};
             });
         });
     }
+
+    onSplashClick = (e) => {
+        const { champion, skinIndex } = this.state;
+        const maxSkinCount = champion.skins.length;
+        if (skinIndex === maxSkinCount - 1) {
+            this.setState({skinIndex: 0});
+        } else {
+            this.setState({skinIndex: skinIndex + 1});
+        }
+    }
+
     render() {
+        const { onSplashClick } = this;
         const { className } = this.props;
-        const { champion } = this.state;
+        const { champion, skinIndex } = this.state;
+        const currentSkin = champion?.skins[skinIndex];
 
         return (
             <div className={`${className} champion-details`}>
                 {champion == null ? <span>Select a champion</span> :
                 <>
                     <div>{champion.name}, {champion.title}</div>
-                    <img alt={champion.id} src={`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion.id}_0.jpg`} />
+                    <img
+                        alt={champion.id}
+                        src={`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion.id}_${currentSkin.num}.jpg`}
+                        onClick={onSplashClick}
+                    />
+                    <small>{skinIndex === 0 ? champion.name : currentSkin.name}</small>
                     <div>
                         <h3>Lore</h3>
                         <p>{champion.lore}</p>

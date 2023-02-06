@@ -3,5 +3,9 @@
   }
 
   .card-container > img {
-    @apply w-16 h-16;
+    @apply w-16 h-16 cursor-pointer;
+  }
+
+  .card-container > img:hover {
+    @apply opacity-70;
   }
