@@ -1,0 +1,7 @@
+.card-container {
+    @apply w-16 h-16 cursor-pointer;
+  }
+
+  .card-container:hover {
+    @apply opacity-70;
+  }

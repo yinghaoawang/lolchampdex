@@ -1,11 +1,3 @@
 .card-list-container {
-    @apply flex flex-row flex-wrap justify-center;
-  }
-
-  .card-container > img {
-    @apply w-16 h-16 cursor-pointer;
-  }
-
-  .card-container > img:hover {
-    @apply opacity-70;
-  }
+  @apply flex flex-row flex-wrap justify-center;
+}
