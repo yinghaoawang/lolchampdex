@@ -13,7 +13,7 @@ class Card extends Component {
                 >
                     <img
                         alt={name}
-                        src={`http://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/${image.full}`}
+                        src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/${image.full}`}
                     />
                 </div>
             );

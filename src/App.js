@@ -15,7 +15,7 @@ class App extends React.Component {
   }
   
   componentDidMount() {
-    fetch('http://ddragon.leagueoflegends.com/cdn/13.1.1/data/en_US/champion.json')
+    fetch('https://ddragon.leagueoflegends.com/cdn/13.1.1/data/en_US/champion.json')
       .then(res => res.json())
       .then(data => {
         let championData = data.data;

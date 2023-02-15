@@ -13,7 +13,7 @@ class ChampionDetails extends Component {
 
         const championId = champion.id;
 
-        fetch(`http://ddragon.leagueoflegends.com/cdn/13.1.1/data/en_US/champion/${championId}.json`)
+        fetch(`https://ddragon.leagueoflegends.com/cdn/13.1.1/data/en_US/champion/${championId}.json`)
         .then(res => res.json())
         .then(data => {
             let championData = data.data[championId];
@@ -47,7 +47,7 @@ class ChampionDetails extends Component {
                     <div>{champion.name}, {champion.title}</div>
                     <img
                         alt={champion.id}
-                        src={`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion.id}_${currentSkin.num}.jpg`}
+                        src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion.id}_${currentSkin.num}.jpg`}
                         onClick={onSplashClick}
                     />
                     <small>{skinIndex === 0 ? champion.name : currentSkin.name}</small>
